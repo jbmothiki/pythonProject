@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import math
 import os
 import random
@@ -6,24 +8,28 @@ import sys
 
 
 #
-# Complete the 'miniMaxSum' function below.
+# Complete the 'timeConversion' function below.
 #
-# The function accepts INTEGER_ARRAY ary as parameter.
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
 #
 
-def minimax_sum(ary):
-    arr_sum = 0
-    min_val, max_val = ary[0], ary[0]
-    for num in ary:
-        arr_sum += num
-        if num < min_val:
-            min_val = num
-        elif num > max_val:
-            max_val = num
-    print(arr_sum - max_val, arr_sum - min_val)
+def time_conversion(s):
+    hours = int(s[:2].replace('12', '00'))
+    if s[-2:] == 'PM':
+        return str(hours + 12) + s[2:-2]
+    return f'{hours:02d}' + s[2:-2]
 
 
 if __name__ == '__main__':
-    arr = [1, 3, 5, 7, 9]
+    # fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    minimax_sum(arr)
+    s = '12:01:00PM'
+
+    result = time_conversion(s)
+
+    # fptr.write(result + '\n')
+
+    # fptr.close()
+
+    print(result)
