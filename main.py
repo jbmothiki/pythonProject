@@ -1,22 +1,11 @@
-import re
+def divisible_impairs(n, k, ary):
+    score = 0
+    for ai in range(n-1):
+        for bi in range(1, (n-ai)):
+            if (ary[ai] + ary[ai+bi]) % k == 0:
+                score += 1
+    print(score)
 
 
-def camel_case(name):
-    operation, method, word = name.split(';')
-    if operation == 'S':
-        list_of_words = re.sub(r"([A-Z])", r" \1", word).lower()
-        if method == "M":
-            return list_of_words.replace('()', '')
-        else:
-            return list_of_words
-    elif operation == 'C':
-        word_list = word.split()
-        camel_case_word = ''.join([word_list[0]] + [w.capitalize() for w in word_list[1:]])
-        if method == "M":
-            return camel_case_word.replace(' ', '') + "()"
-        else:
-            return camel_case_word.replace(' ', '')
-
-
-w = "S;C;OrangeHighlighter"
-print(camel_case(w))
+if __name__ == '__main__':
+    divisible_impairs(6, 3, [1, 3, 2, 6, 1, 2])
