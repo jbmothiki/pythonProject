@@ -1,11 +1,30 @@
-def divisible_impairs(n, k, ary):
-    score = 0
-    for ai in range(n-1):
-        for bi in range(1, (n-ai)):
-            if (ary[ai] + ary[ai+bi]) % k == 0:
-                score += 1
-    print(score)
+def second_lowest_grade(students):
+    """Finds the second-lowest grade and prints the corresponding student names.
 
+    Args:
+        students: A nested list containing student names and their grades.
+    """
 
-if __name__ == '__main__':
-    divisible_impairs(6, 3, [1, 3, 2, 6, 1, 2])
+    # Create a dictionary to store grades as keys and student names as values
+    grade_dict = {}
+    for name, grade in students:
+        grade_dict.setdefault(grade, []).append(name)
+
+    # Find the second-lowest grade
+    grades = sorted(grade_dict.keys())
+    second_lowest = grades[1]
+
+    # Print the names of students with the second-lowest grade
+    print(second_lowest)
+    for name in sorted(grade_dict[second_lowest]):
+        print(name)
+
+# Example usage
+students = [
+    ["Harry", 37.21],
+    ["Berry", 37.21],
+    ["Tina", 37.2],
+    ["Akash", 37.2],
+]
+
+second_lowest_grade(students)
